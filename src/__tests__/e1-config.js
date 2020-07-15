@@ -1,11 +1,9 @@
 const tokens = [
   {
-    // (
-    value: /^\($/,
+    value: '(',
   },
   {
-    // )
-    value: /^\)$/,
+    value: ')',
   },
   {
     // numbers
@@ -13,14 +11,14 @@ const tokens = [
   },
   {
     // identifiers
-    value: /^[0-9a-zA-Z_\.\+\/\=<>&]+$/,
+    value: /^[0-9a-zA-Z_\.]+$/,
   },
   {
-    // single quotes string
+    // single quote strings
     value: /^'[^']*'?$/,
   },
   {
-    // double quotes string
+    // double quote strings
     value: /^"[^"]*"?$/,
   },
   {
@@ -28,60 +26,45 @@ const tokens = [
     value: /^\n? *;.*\n?$/,
   },
   {
-    // [
-    value: /^\[$/,
+    value: '[',
     replace: ['(', 'core_list'],
   },
   {
-    // ]
-    value: /^\]$/,
-    replace: [')'],
+    value: ']',
+    replace: ')',
   },
   {
-    // {
-    value: /^{$/,
+    value: '{',
     replace: ['(', 'core_hashmap'],
   },
   {
-    // }
-    value: /^}$/,
-    replace: [')'],
+    value: '}',
+    replace: ')',
   },
-
-  {
-    // +
-    value: /^\+$/,
-    replace: 'core_add',
-  },
+  { value: '|', replace: 'core_or' },
+  { value: '~', replace: 'core_pipe' },
+  { value: '-', replace: 'core_subtract' },
+  { value: '*', replace: 'core_multiply' },
+  { value: '+', replace: 'core_add' },
+  { value: '/', replace: 'core_divide' },
+  { value: '>', replace: 'core_gt' },
+  { value: '<', replace: 'core_lt' },
+  { value: '>=', replace: 'core_gte' },
+  { value: '<=', replace: 'core_lte' },
+  { value: '++', replace: 'core_concat' },
+  { value: '=', replace: 'core_equals' },
+  { value: '%', replace: 'core_remainder' },
+  { value: '&', replace: 'core_and' },
+  { value: 'splitEvery', isCore: true },
+  { value: 'join', isCore: true },
+  { value: 'all', isCore: true },
+  { value: 'any', isCore: true },
+  { value: 'set', isCore: true },
+  { value: 'map', isCore: true },
+  { value: 'imap', isCore: true },
+  { value: 'type', isCore: true },
+  { value: 'range', isCore: true },
+  { value: 'log', isCore: true },
 ];
 
-const keywords = [
-  'pipe',
-  'subtract',
-  'remainder',
-  'divide',
-  'multiply',
-  'add',
-  'equals',
-  'or',
-  'splitEvery',
-  'join',
-  'and',
-  'gt',
-  'lt',
-  'gte',
-  'lte',
-  'concat',
-  'all',
-  'any',
-  'set',
-  'map',
-  'imap',
-  'type',
-  'range',
-  'hashmap',
-  'list',
-  'log',
-];
-
-module.exports = { tokens, keywords };
+module.exports = { tokens };
